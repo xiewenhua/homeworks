@@ -26,7 +26,8 @@ GO
 
 -- 商品快照表
 -- 应该添加触发器，当商品表发生UPDATE或者INSERT前，往商品快照表写入记录
-CREATE TABLE snapshots(
+CREATE TABLE snapshots
+(
     snapshot_id int NOT NULL,
     snapshot_time datetime NOT NULL,
     good_id int NOT NULL,
@@ -57,6 +58,20 @@ GO
 ALTER TABLE  store_repositories ADD FOREIGN KEY(stor_id) REFERENCES stores(stor_id)
 GO
 ALTER TABLE store_repositories ADD FOREIGN KEY(repo_id) REFERENCES repositories(repo_id)
+GO
+
+-- 一个仓库可以保存多种商品,stock是库存数量
+CREATE TABLE repo_goods
+(
+    repo_id int NOT NULL,
+    good_id int NOT NULL,
+    stock int NOT NULL,
+    PRIMARY KEY(repo_id, good_id)
+)
+GO
+ALTER TABLE repo_goods ADD FOREIGN KEY(repo_id) REFERENCES repositories(repo_id)
+GO
+ALTER TABLE repo_goods ADD FOREIGN KEY(good_id) REFERENCES goods(good_id)
 GO
 
 -- 仓库进货批次号 批次号-仓库号-进货时间-供应商号 batch_id:进货批次号
