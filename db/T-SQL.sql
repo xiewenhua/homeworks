@@ -20,6 +20,7 @@ GO
 CREATE TABLE goods
 (
     good_id int NOT NULL,
+    good_name CHAR(50) NOT NULL,
     PRIMARY KEY(good_id)
 )
 GO
