@@ -1,7 +1,7 @@
 -- 仓库表
 CREATE TABLE repositories
 (
-    repo_id int NOT NULL,
+    repo_id int IDENTITY(10000,1) NOT NULL,
     repo_address char(50) NOT NULL,
     PRIMARY KEY(repo_id)
 )
@@ -10,7 +10,7 @@ GO
 -- 门店表
 CREATE TABLE stores
 (
-    stor_id int NOT NULL,
+    stor_id int IDENTITY(10000,1) NOT NULL,
     stor_address char(50) NOT NULL,
     PRIMARY KEY(stor_id)
 )
@@ -19,7 +19,7 @@ GO
 -- 商品表
 CREATE TABLE goods
 (
-    good_id int NOT NULL,
+    good_id int IDENTITY(10000,1) NOT NULL,
     good_name CHAR(50) NOT NULL,
     PRIMARY KEY(good_id)
 )
@@ -29,7 +29,7 @@ GO
 -- 应该添加触发器，当商品表发生UPDATE或者INSERT前，往商品快照表写入记录
 CREATE TABLE snapshots
 (
-    snapshot_id int NOT NULL,
+    snapshot_id int IDENTITY(10000,1) NOT NULL,
     snapshot_time datetime NOT NULL,
     good_id int NOT NULL,
     good_name char(50) NOT NULL,
@@ -43,7 +43,7 @@ GO
 -- 供应商表
 CREATE TABLE vendors
 (
-    vend_id int NOT NULL,
+    vend_id int IDENTITY(10000,1) NOT NULL,
     PRIMARY KEY(vend_id)
 )
 GO
@@ -78,7 +78,7 @@ GO
 -- 仓库进货批次号 批次号-仓库号-进货时间-供应商号 batch_id:进货批次号
 CREATE TABLE batch
 (
-    batch_id int NOT NULL,
+    batch_id int IDENTITY(10000,1) NOT NULL,
     repo_id int NOT NULL,
     batch_date datetime NOT NULL,
     vend_id int NOT NULL,
@@ -109,7 +109,7 @@ GO
 -- 门店可以销售多种商品
 CREATE TABLE storegood
 (
-    storegood_id int NOT NULL,
+    storegood_id int IDENTITY(10000,1) NOT NULL,
     stor_id int NOT NULL,
     good_id int NOT NULL,
     PRIMARY KEY(storegood_id)
@@ -135,7 +135,7 @@ GO
 -- 门店销售订单号   !!!加一个订单总金额（反范式）
 CREATE TABLE orders
 (
-    order_num int NOT NULL,
+    order_num int IDENTITY(10000,1) NOT NULL,
     order_date datetime NOT NULL,
     total_amount float NOT NULL,
     PRIMARY KEY(order_num)
@@ -145,7 +145,7 @@ GO
 -- 一个订单可以有多种商品
 CREATE TABLE ordergoods
 (
-    ordergood_id int NOT NULL,
+    ordergood_id int IDENTITY(10000,1) NOT NULL,
     order_num int NOT NULL,
     good_id int NOT NULL,
     ordergood_quantity int NOT NULL,
@@ -160,7 +160,7 @@ GO
 -- 收款方式
 CREATE TABLE paytype
 (
-    paytype_id int NOT NULL,
+    paytype_id int IDENTITY(10000,1) NOT NULL,
     paytype_name char(50) NOT NULL,
     PRIMARY KEY(paytype_id)
 )
