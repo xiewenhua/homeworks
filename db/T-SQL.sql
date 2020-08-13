@@ -2,7 +2,7 @@
 CREATE TABLE repositories
 (
     repo_id int IDENTITY(10000,1) NOT NULL,
-    repo_address char(50) NOT NULL,
+    repo_address nchar(50) NOT NULL,
     PRIMARY KEY(repo_id)
 )
 GO
@@ -11,7 +11,7 @@ GO
 CREATE TABLE stores
 (
     stor_id int IDENTITY(10000,1) NOT NULL,
-    stor_address char(50) NOT NULL,
+    stor_address nchar(50) NOT NULL,
     PRIMARY KEY(stor_id)
 )
 GO
@@ -20,7 +20,7 @@ GO
 CREATE TABLE goods
 (
     good_id int IDENTITY(10000,1) NOT NULL,
-    good_name CHAR(50) NOT NULL,
+    good_name nchar(50) NOT NULL,
     PRIMARY KEY(good_id)
 )
 GO
@@ -32,7 +32,7 @@ CREATE TABLE snapshots
     snapshot_id int IDENTITY(10000,1) NOT NULL,
     snapshot_time datetime NOT NULL,
     good_id int NOT NULL,
-    good_name char(50) NOT NULL,
+    good_name nchar(50) NOT NULL,
     PRIMARY KEY(snapshot_id)
 )
 GO
@@ -161,7 +161,7 @@ GO
 CREATE TABLE paytype
 (
     paytype_id int IDENTITY(10000,1) NOT NULL,
-    paytype_name char(50) NOT NULL,
+    paytype_name nchar(50) NOT NULL,
     PRIMARY KEY(paytype_id)
 )
 GO
