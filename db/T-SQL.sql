@@ -192,16 +192,41 @@ GO
 ALTER TABLE ordergood_batch ADD FOREIGN KEY(batch_id) REFERENCES batch(batch_id)
 GO
 
+-- =================插入示例数据，为后面演示需要用到====================
 
+-- 为了测试存储过程，需要在相关表中插入几行记录
+SET IDENTITY_INSERT repositories ON
+GO
+INSERT INTO repositories(repo_id, repo_address)
+VALUES(10001, '西丽'),
+    (10002, '荔枝世界')
+GO
+SET IDENTITY_INSERT repositories OFF
+GO
+
+SET IDENTITY_INSERT goods ON
+GO
+INSERT INTO goods(good_id, good_name)
+VALUES(10001, '东芝固态TYC9099'),
+    (10002, '三星固态YOU767'),
+    (10003, '闪迪固态LSHHS7838')
+GO
+SET IDENTITY_INSERT goods OFF
+GO
+
+SET IDENTITY_INSERT vendors ON
+GO
+INSERT INTO vendors(vend_id)
+VALUES(1001),
+    (1002),
+    (1003)
+GO
+SET IDENTITY_INSERT vendors OFF
 
 
 -- =================这是第一次作业与第二次作业的分割线==================
 
-
-
--- 成本低的优先出货(自动的)
--- 创建入库单的存储过程
--- 因为入库的可能是多种商品, SQL Server 支持Table类型（MySQL是不支持的）
+-- 创建入库商品类型。因为入库的可能是多种商品, SQL Server 支持Table类型（MySQL是不支持的）
 CREATE TYPE goodlisttype AS TABLE(
     good_id int NOT NULL,
     purchase_price float NOT NULL,
@@ -209,6 +234,7 @@ CREATE TYPE goodlisttype AS TABLE(
 )
 GO
 
+-- 创建入库单的存储过程
 CREATE PROC ruku(
     @batch_id int,
     @repo_id int,
@@ -219,10 +245,12 @@ CREATE PROC ruku(
 AS
 BEGIN
     BEGIN TRANSACTION
+    SET IDENTITY_INSERT batch ON
     INSERT INTO
-    batch
+    batch(batch_id, repo_id, batch_date, vend_id)
     VALUES
         (@batch_id, @repo_id, @batch_date, @vend_id)
+    SET IDENTITY_INSERT batch OFF
     INSERT INTO
     batch_goods
         (
@@ -244,35 +272,18 @@ BEGIN
 END
 GO
 
--- 执行存储过程示例
-
-
--- 创建售货单的存储过程
-
--- 为了测试存储过程，需要在相关表中插入几行记录
-INSERT INTO repositories
-VALUES(10001, '西丽'),
-    (10002, '荔枝世界')
-GO
-INSERT INTO goods
-VALUES(10001),
-    (10002),
-    (10003)
-GO
-INSERT INTO vendors
-VALUES(1001),
-    (1002),
-    (1003)
-GO
-
--- 定义并复制Table类型
-DECLARE @goodlist AS goodlisttype
-INSERT INTO @goodlist
+-- 使用存储过程分两步
+-- 1、声明并赋值Table类型的变量，用于存放商品的编号、价格、数量
+DECLARE @@goodlist AS goodlisttype
+INSERT INTO @@goodlist
     SELECT 10001, 543, 365
 UNION ALL
     SELECT 10002, 899, 500
 UNION ALL
     SELECT 10003, 788, 1000
--- 执行存储过程
-EXEC ruku @batch_id =10001,@repo_id= 10001,@batch_date='2020-07-03',@vend_id=1001,@goodlist=@goodlist
+-- 2、执行存储过程
+EXEC ruku @batch_id =10001,@repo_id= 10001,@batch_date='2020-07-03',@vend_id=1001,@goodlist=@@goodlist
 GO
+
+-- 成本低的优先出货(自动的)
+-- 创建售货单的存储过程
