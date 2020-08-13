@@ -140,15 +140,16 @@ GO
 ALTER TABLE saleprices ADD FOREIGN KEY(storegood_id) REFERENCES storegood(storegood_id)
 GO
 
--- 门店销售订单号   !!!加一个订单总金额（反范式）
+-- 门店销售订单号   !!!加一个订单总金额（反范式） !!!不加了
 CREATE TABLE orders
 (
     order_num int IDENTITY(10000,1) NOT NULL,
-    order_date datetime NOT NULL,
-    total_amount float NOT NULL,
+    stor_id int NOT NULL,
+    order_date datetime NOT NULL
     PRIMARY KEY(order_num)
 )
 GO
+ALTER TABLE orders ADD FOREIGN KEY(stor_id) REFERENCES stores(stor_id)
 
 -- 一个订单可以有多种商品
 CREATE TABLE ordergoods
@@ -231,6 +232,11 @@ VALUES(1001),
 GO
 SET IDENTITY_INSERT vendors OFF
 
+SET IDENTITY_INSERT stores ON
+INSERT INTO stores(stor_id,stor_address)
+VALUES(10001,'广州门店'),
+(10002,'深圳门店')
+SET IDENTITY_INSERT stores OFF
 
 -- =================这是第一次作业与第二次作业的分割线==================
 
@@ -295,3 +301,47 @@ GO
 
 -- 成本低的优先出货(自动的)
 -- 创建售货单的存储过程
+-- 购物车类型
+CREATE TYPE shop_cart_type AS TABLE(
+    good_id int NOT NULL,
+    quantity int NOT NULL
+)
+GO
+
+CREATE PROC sale(
+    @shop_cart shop_cart_type READONLY,
+    @stor_id int
+)
+AS
+DECLARE @order_id int,@good_id int,@quantity int;
+DECLARE shopcart_cur CURSOR FOR SELECT * FROM @shop_cart;
+-- 存放仓库中该商品的总数量
+DECLARE @repo_q int;
+BEGIN TRANSACTION
+OPEN shopcart_cur;
+FETCH NEXT FROM shopcart_cur INTO @goood_id,@quantity
+WHILE @@FETCH_STATUS =0
+BEGIN
+    SELECT @repo_q = SUM(surplus) FROM batch_goods
+    WHERE good_id=@good_id
+    AND batch_id IN (
+        SELECT batch_id FROM batch
+        WHERE repo_id=(
+            SELECT repo_id FROM store_repositories
+            WHERE stor_id=@stor_id
+        )
+    )
+END
+INSERT INTO orders(stor_id,order_date) VALUES(@stor_id,GETDATE())
+SET @order_id=SCOPE_IDENTITY()
+INSERT INTO ordergoods(order_num,good_id,ordergood_quantity)
+SELECT @order_id,good_id,quantity FROM @shop_cart
+COMMIT TRANSACTION
+GO
+
+-- 使用销售存储过程
+DECLARE @@shop_cart AS shop_cart_type
+INSERT INTO @@shop_cart
+SELECT 10001,10
+EXEC sale @shop_cart=@@shop_cart,@stor_id=10001
+
