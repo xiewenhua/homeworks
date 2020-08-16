@@ -150,6 +150,7 @@
     <Compile Include="Controllers\paytypesController.cs" />
     <Compile Include="Controllers\repositoriesController.cs" />
     <Compile Include="Controllers\repo_goodController.cs" />
+    <Compile Include="Controllers\salepricesController.cs" />
     <Compile Include="Controllers\snapshotsController.cs" />
     <Compile Include="Controllers\storegoodsController.cs" />
     <Compile Include="Controllers\storesController.cs" />
@@ -326,6 +327,11 @@
     <Content Include="Views\snapshots\Details.cshtml" />
     <Content Include="Views\snapshots\Edit.cshtml" />
     <Content Include="Views\snapshots\Index.cshtml" />
+    <Content Include="Views\saleprices\Create.cshtml" />
+    <Content Include="Views\saleprices\Delete.cshtml" />
+    <Content Include="Views\saleprices\Details.cshtml" />
+    <Content Include="Views\saleprices\Edit.cshtml" />
+    <Content Include="Views\saleprices\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
