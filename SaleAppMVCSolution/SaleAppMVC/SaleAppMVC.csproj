@@ -142,6 +142,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\batchesController.cs" />
+    <Compile Include="Controllers\batch_goodController.cs" />
     <Compile Include="Controllers\goodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\paytypesController.cs" />
@@ -296,6 +297,11 @@
     <Content Include="Views\batches\Details.cshtml" />
     <Content Include="Views\batches\Edit.cshtml" />
     <Content Include="Views\batches\Index.cshtml" />
+    <Content Include="Views\batch_good\Create.cshtml" />
+    <Content Include="Views\batch_good\Delete.cshtml" />
+    <Content Include="Views\batch_good\Details.cshtml" />
+    <Content Include="Views\batch_good\Edit.cshtml" />
+    <Content Include="Views\batch_good\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

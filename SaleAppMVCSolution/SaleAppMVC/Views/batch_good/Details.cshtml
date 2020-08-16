@@ -1,0 +1,42 @@
+﻿@model SaleAppMVC.Models.batch_good
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>batch_good</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.purchase_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.purchase_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.purchase_quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.purchase_quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.surplus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.surplus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
