@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e780a783afb946c88cdd43a4ad0cafc8" Name="Diagram1">
+        <EntityTypeShape EntityType="HomeworksDBModel.batch" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeworksDBModel.batch_good" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeworksDBModel.good" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeworksDBModel.ordergood" Width="1.5" PointX="6" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeworksDBModel.order" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeworksDBModel.paytype" Width="1.5" PointX="6" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeworksDBModel.repo_good" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeworksDBModel.repository" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeworksDBModel.saleprice" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeworksDBModel.snapshot" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeworksDBModel.storegood" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeworksDBModel.store" Width="1.5" PointX="1.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeworksDBModel.vendor" Width="1.5" PointX="1.5" PointY="19.625" IsExpanded="true" />
+        <AssociationConnector Association="HomeworksDBModel.FK__batch__repo_id__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.FK__batch__vend_id__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.FK__batch_goo__batch__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.FK__batch_goo__good___3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.FK__ordergood__good___49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.FK__repo_good__good___34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.FK__snapshots__good___2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.FK__storegood__good___403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.FK__ordergood__order__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.FK__orders__stor_id__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.FK__repo_good__repo___33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.FK__saleprice__store__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.FK__storegood__stor___3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.ordergood_batch" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.orderpaytype" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeworksDBModel.store_repositories" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

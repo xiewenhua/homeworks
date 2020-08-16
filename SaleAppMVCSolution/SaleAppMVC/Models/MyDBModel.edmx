@@ -1,0 +1,987 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HomeworksDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="batch">
+          <Key>
+            <PropertyRef Name="batch_id" />
+          </Key>
+          <Property Name="batch_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="repo_id" Type="int" Nullable="false" />
+          <Property Name="batch_date" Type="datetime" Nullable="false" />
+          <Property Name="vend_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="batch_goods">
+          <Key>
+            <PropertyRef Name="batch_id" />
+            <PropertyRef Name="good_id" />
+          </Key>
+          <Property Name="batch_id" Type="int" Nullable="false" />
+          <Property Name="good_id" Type="int" Nullable="false" />
+          <Property Name="purchase_price" Type="float" Nullable="false" />
+          <Property Name="purchase_quantity" Type="int" Nullable="false" />
+          <Property Name="surplus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="goods">
+          <Key>
+            <PropertyRef Name="good_id" />
+          </Key>
+          <Property Name="good_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="good_name" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ordergood_batch">
+          <Key>
+            <PropertyRef Name="ordergood_id" />
+            <PropertyRef Name="batch_id" />
+          </Key>
+          <Property Name="ordergood_id" Type="int" Nullable="false" />
+          <Property Name="batch_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ordergoods">
+          <Key>
+            <PropertyRef Name="ordergood_id" />
+          </Key>
+          <Property Name="ordergood_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_num" Type="int" Nullable="false" />
+          <Property Name="good_id" Type="int" Nullable="false" />
+          <Property Name="ordergood_quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orderpaytype">
+          <Key>
+            <PropertyRef Name="order_num" />
+            <PropertyRef Name="paytype_id" />
+          </Key>
+          <Property Name="order_num" Type="int" Nullable="false" />
+          <Property Name="paytype_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="order_num" />
+          </Key>
+          <Property Name="order_num" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stor_id" Type="int" Nullable="false" />
+          <Property Name="order_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="paytype">
+          <Key>
+            <PropertyRef Name="paytype_id" />
+          </Key>
+          <Property Name="paytype_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="paytype_name" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="repo_goods">
+          <Key>
+            <PropertyRef Name="repo_id" />
+            <PropertyRef Name="good_id" />
+          </Key>
+          <Property Name="repo_id" Type="int" Nullable="false" />
+          <Property Name="good_id" Type="int" Nullable="false" />
+          <Property Name="stock" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="repositories">
+          <Key>
+            <PropertyRef Name="repo_id" />
+          </Key>
+          <Property Name="repo_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="repo_address" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="saleprices">
+          <Key>
+            <PropertyRef Name="storegood_id" />
+            <PropertyRef Name="sale_date" />
+          </Key>
+          <Property Name="storegood_id" Type="int" Nullable="false" />
+          <Property Name="sale_date" Type="datetime" Nullable="false" />
+          <Property Name="sale_price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="snapshots">
+          <Key>
+            <PropertyRef Name="snapshot_id" />
+          </Key>
+          <Property Name="snapshot_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="snapshot_time" Type="datetime" Nullable="false" />
+          <Property Name="good_id" Type="int" Nullable="false" />
+          <Property Name="good_name" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="store_repositories">
+          <Key>
+            <PropertyRef Name="stor_id" />
+            <PropertyRef Name="repo_id" />
+          </Key>
+          <Property Name="stor_id" Type="int" Nullable="false" />
+          <Property Name="repo_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="storegood">
+          <Key>
+            <PropertyRef Name="storegood_id" />
+          </Key>
+          <Property Name="storegood_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stor_id" Type="int" Nullable="false" />
+          <Property Name="good_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stores">
+          <Key>
+            <PropertyRef Name="stor_id" />
+          </Key>
+          <Property Name="stor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stor_address" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vendors">
+          <Key>
+            <PropertyRef Name="vend_id" />
+          </Key>
+          <Property Name="vend_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__batch__repo_id__37A5467C">
+          <End Role="repositories" Type="Self.repositories" Multiplicity="1" />
+          <End Role="batch" Type="Self.batch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="repositories">
+              <PropertyRef Name="repo_id" />
+            </Principal>
+            <Dependent Role="batch">
+              <PropertyRef Name="repo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__batch__vend_id__38996AB5">
+          <End Role="vendors" Type="Self.vendors" Multiplicity="1" />
+          <End Role="batch" Type="Self.batch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendors">
+              <PropertyRef Name="vend_id" />
+            </Principal>
+            <Dependent Role="batch">
+              <PropertyRef Name="vend_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__batch_goo__batch__3C69FB99">
+          <End Role="batch" Type="Self.batch" Multiplicity="1" />
+          <End Role="batch_goods" Type="Self.batch_goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="batch">
+              <PropertyRef Name="batch_id" />
+            </Principal>
+            <Dependent Role="batch_goods">
+              <PropertyRef Name="batch_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__batch_goo__good___3B75D760">
+          <End Role="goods" Type="Self.goods" Multiplicity="1" />
+          <End Role="batch_goods" Type="Self.batch_goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="goods">
+              <PropertyRef Name="good_id" />
+            </Principal>
+            <Dependent Role="batch_goods">
+              <PropertyRef Name="good_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ordergood__batch__534D60F1">
+          <End Role="batch" Type="Self.batch" Multiplicity="1" />
+          <End Role="ordergood_batch" Type="Self.ordergood_batch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="batch">
+              <PropertyRef Name="batch_id" />
+            </Principal>
+            <Dependent Role="ordergood_batch">
+              <PropertyRef Name="batch_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ordergood__good___49C3F6B7">
+          <End Role="goods" Type="Self.goods" Multiplicity="1" />
+          <End Role="ordergoods" Type="Self.ordergoods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="goods">
+              <PropertyRef Name="good_id" />
+            </Principal>
+            <Dependent Role="ordergoods">
+              <PropertyRef Name="good_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ordergood__order__48CFD27E">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="ordergoods" Type="Self.ordergoods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="order_num" />
+            </Principal>
+            <Dependent Role="ordergoods">
+              <PropertyRef Name="order_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ordergood__order__52593CB8">
+          <End Role="ordergoods" Type="Self.ordergoods" Multiplicity="1" />
+          <End Role="ordergood_batch" Type="Self.ordergood_batch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ordergoods">
+              <PropertyRef Name="ordergood_id" />
+            </Principal>
+            <Dependent Role="ordergood_batch">
+              <PropertyRef Name="ordergood_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orderpayt__order__4F7CD00D">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="orderpaytype" Type="Self.orderpaytype" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="order_num" />
+            </Principal>
+            <Dependent Role="orderpaytype">
+              <PropertyRef Name="order_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orderpayt__payty__4E88ABD4">
+          <End Role="paytype" Type="Self.paytype" Multiplicity="1" />
+          <End Role="orderpaytype" Type="Self.orderpaytype" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="paytype">
+              <PropertyRef Name="paytype_id" />
+            </Principal>
+            <Dependent Role="orderpaytype">
+              <PropertyRef Name="paytype_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__stor_id__45F365D3">
+          <End Role="stores" Type="Self.stores" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stores">
+              <PropertyRef Name="stor_id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="stor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__repo_good__good___34C8D9D1">
+          <End Role="goods" Type="Self.goods" Multiplicity="1" />
+          <End Role="repo_goods" Type="Self.repo_goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="goods">
+              <PropertyRef Name="good_id" />
+            </Principal>
+            <Dependent Role="repo_goods">
+              <PropertyRef Name="good_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__repo_good__repo___33D4B598">
+          <End Role="repositories" Type="Self.repositories" Multiplicity="1" />
+          <End Role="repo_goods" Type="Self.repo_goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="repositories">
+              <PropertyRef Name="repo_id" />
+            </Principal>
+            <Dependent Role="repo_goods">
+              <PropertyRef Name="repo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__saleprice__store__4316F928">
+          <End Role="storegood" Type="Self.storegood" Multiplicity="1" />
+          <End Role="saleprices" Type="Self.saleprices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="storegood">
+              <PropertyRef Name="storegood_id" />
+            </Principal>
+            <Dependent Role="saleprices">
+              <PropertyRef Name="storegood_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__snapshots__good___2A4B4B5E">
+          <End Role="goods" Type="Self.goods" Multiplicity="1" />
+          <End Role="snapshots" Type="Self.snapshots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="goods">
+              <PropertyRef Name="good_id" />
+            </Principal>
+            <Dependent Role="snapshots">
+              <PropertyRef Name="good_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__store_rep__repo___30F848ED">
+          <End Role="repositories" Type="Self.repositories" Multiplicity="1" />
+          <End Role="store_repositories" Type="Self.store_repositories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="repositories">
+              <PropertyRef Name="repo_id" />
+            </Principal>
+            <Dependent Role="store_repositories">
+              <PropertyRef Name="repo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__store_rep__stor___300424B4">
+          <End Role="stores" Type="Self.stores" Multiplicity="1" />
+          <End Role="store_repositories" Type="Self.store_repositories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stores">
+              <PropertyRef Name="stor_id" />
+            </Principal>
+            <Dependent Role="store_repositories">
+              <PropertyRef Name="stor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__storegood__good___403A8C7D">
+          <End Role="goods" Type="Self.goods" Multiplicity="1" />
+          <End Role="storegood" Type="Self.storegood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="goods">
+              <PropertyRef Name="good_id" />
+            </Principal>
+            <Dependent Role="storegood">
+              <PropertyRef Name="good_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__storegood__stor___3F466844">
+          <End Role="stores" Type="Self.stores" Multiplicity="1" />
+          <End Role="storegood" Type="Self.storegood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stores">
+              <PropertyRef Name="stor_id" />
+            </Principal>
+            <Dependent Role="storegood">
+              <PropertyRef Name="stor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HomeworksDBModelStoreContainer">
+          <EntitySet Name="batch" EntityType="Self.batch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="batch_goods" EntityType="Self.batch_goods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="goods" EntityType="Self.goods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ordergood_batch" EntityType="Self.ordergood_batch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ordergoods" EntityType="Self.ordergoods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orderpaytype" EntityType="Self.orderpaytype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="paytype" EntityType="Self.paytype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="repo_goods" EntityType="Self.repo_goods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="repositories" EntityType="Self.repositories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="saleprices" EntityType="Self.saleprices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="snapshots" EntityType="Self.snapshots" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="store_repositories" EntityType="Self.store_repositories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="storegood" EntityType="Self.storegood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stores" EntityType="Self.stores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vendors" EntityType="Self.vendors" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__batch__repo_id__37A5467C" Association="Self.FK__batch__repo_id__37A5467C">
+            <End Role="repositories" EntitySet="repositories" />
+            <End Role="batch" EntitySet="batch" />
+          </AssociationSet>
+          <AssociationSet Name="FK__batch__vend_id__38996AB5" Association="Self.FK__batch__vend_id__38996AB5">
+            <End Role="vendors" EntitySet="vendors" />
+            <End Role="batch" EntitySet="batch" />
+          </AssociationSet>
+          <AssociationSet Name="FK__batch_goo__batch__3C69FB99" Association="Self.FK__batch_goo__batch__3C69FB99">
+            <End Role="batch" EntitySet="batch" />
+            <End Role="batch_goods" EntitySet="batch_goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__batch_goo__good___3B75D760" Association="Self.FK__batch_goo__good___3B75D760">
+            <End Role="goods" EntitySet="goods" />
+            <End Role="batch_goods" EntitySet="batch_goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ordergood__batch__534D60F1" Association="Self.FK__ordergood__batch__534D60F1">
+            <End Role="batch" EntitySet="batch" />
+            <End Role="ordergood_batch" EntitySet="ordergood_batch" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ordergood__good___49C3F6B7" Association="Self.FK__ordergood__good___49C3F6B7">
+            <End Role="goods" EntitySet="goods" />
+            <End Role="ordergoods" EntitySet="ordergoods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ordergood__order__48CFD27E" Association="Self.FK__ordergood__order__48CFD27E">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="ordergoods" EntitySet="ordergoods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ordergood__order__52593CB8" Association="Self.FK__ordergood__order__52593CB8">
+            <End Role="ordergoods" EntitySet="ordergoods" />
+            <End Role="ordergood_batch" EntitySet="ordergood_batch" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orderpayt__order__4F7CD00D" Association="Self.FK__orderpayt__order__4F7CD00D">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="orderpaytype" EntitySet="orderpaytype" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orderpayt__payty__4E88ABD4" Association="Self.FK__orderpayt__payty__4E88ABD4">
+            <End Role="paytype" EntitySet="paytype" />
+            <End Role="orderpaytype" EntitySet="orderpaytype" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__stor_id__45F365D3" Association="Self.FK__orders__stor_id__45F365D3">
+            <End Role="stores" EntitySet="stores" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__repo_good__good___34C8D9D1" Association="Self.FK__repo_good__good___34C8D9D1">
+            <End Role="goods" EntitySet="goods" />
+            <End Role="repo_goods" EntitySet="repo_goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__repo_good__repo___33D4B598" Association="Self.FK__repo_good__repo___33D4B598">
+            <End Role="repositories" EntitySet="repositories" />
+            <End Role="repo_goods" EntitySet="repo_goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__saleprice__store__4316F928" Association="Self.FK__saleprice__store__4316F928">
+            <End Role="storegood" EntitySet="storegood" />
+            <End Role="saleprices" EntitySet="saleprices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__snapshots__good___2A4B4B5E" Association="Self.FK__snapshots__good___2A4B4B5E">
+            <End Role="goods" EntitySet="goods" />
+            <End Role="snapshots" EntitySet="snapshots" />
+          </AssociationSet>
+          <AssociationSet Name="FK__store_rep__repo___30F848ED" Association="Self.FK__store_rep__repo___30F848ED">
+            <End Role="repositories" EntitySet="repositories" />
+            <End Role="store_repositories" EntitySet="store_repositories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__store_rep__stor___300424B4" Association="Self.FK__store_rep__stor___300424B4">
+            <End Role="stores" EntitySet="stores" />
+            <End Role="store_repositories" EntitySet="store_repositories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__storegood__good___403A8C7D" Association="Self.FK__storegood__good___403A8C7D">
+            <End Role="goods" EntitySet="goods" />
+            <End Role="storegood" EntitySet="storegood" />
+          </AssociationSet>
+          <AssociationSet Name="FK__storegood__stor___3F466844" Association="Self.FK__storegood__stor___3F466844">
+            <End Role="stores" EntitySet="stores" />
+            <End Role="storegood" EntitySet="storegood" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HomeworksDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="batch">
+          <Key>
+            <PropertyRef Name="batch_id" />
+          </Key>
+          <Property Name="batch_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="repo_id" Type="Int32" Nullable="false" />
+          <Property Name="batch_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="vend_id" Type="Int32" Nullable="false" />
+          </EntityType>
+        <EntityType Name="batch_good">
+          <Key>
+            <PropertyRef Name="batch_id" />
+            <PropertyRef Name="good_id" />
+          </Key>
+          <Property Name="batch_id" Type="Int32" Nullable="false" />
+          <Property Name="good_id" Type="Int32" Nullable="false" />
+          <Property Name="purchase_price" Type="Double" Nullable="false" />
+          <Property Name="purchase_quantity" Type="Int32" Nullable="false" />
+          <Property Name="surplus" Type="Int32" Nullable="false" />
+          </EntityType>
+        <EntityType Name="good">
+          <Key>
+            <PropertyRef Name="good_id" />
+          </Key>
+          <Property Name="good_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="good_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          </EntityType>
+        <EntityType Name="ordergood">
+          <Key>
+            <PropertyRef Name="ordergood_id" />
+          </Key>
+          <Property Name="ordergood_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_num" Type="Int32" Nullable="false" />
+          <Property Name="good_id" Type="Int32" Nullable="false" />
+          <Property Name="ordergood_quantity" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="order_num" />
+          </Key>
+          <Property Name="order_num" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stor_id" Type="Int32" Nullable="false" />
+          <Property Name="order_date" Type="DateTime" Nullable="false" Precision="3" />
+          </EntityType>
+        <EntityType Name="paytype">
+          <Key>
+            <PropertyRef Name="paytype_id" />
+          </Key>
+          <Property Name="paytype_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paytype_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="repo_good">
+          <Key>
+            <PropertyRef Name="repo_id" />
+            <PropertyRef Name="good_id" />
+          </Key>
+          <Property Name="repo_id" Type="Int32" Nullable="false" />
+          <Property Name="good_id" Type="Int32" Nullable="false" />
+          <Property Name="stock" Type="Int32" Nullable="false" />
+          </EntityType>
+        <EntityType Name="repository">
+          <Key>
+            <PropertyRef Name="repo_id" />
+          </Key>
+          <Property Name="repo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="repo_address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          </EntityType>
+        <EntityType Name="saleprice">
+          <Key>
+            <PropertyRef Name="storegood_id" />
+            <PropertyRef Name="sale_date" />
+          </Key>
+          <Property Name="storegood_id" Type="Int32" Nullable="false" />
+          <Property Name="sale_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="sale_price" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="snapshot">
+          <Key>
+            <PropertyRef Name="snapshot_id" />
+          </Key>
+          <Property Name="snapshot_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="snapshot_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="good_id" Type="Int32" Nullable="false" />
+          <Property Name="good_name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="storegood">
+          <Key>
+            <PropertyRef Name="storegood_id" />
+          </Key>
+          <Property Name="storegood_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stor_id" Type="Int32" Nullable="false" />
+          <Property Name="good_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="store">
+          <Key>
+            <PropertyRef Name="stor_id" />
+          </Key>
+          <Property Name="stor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stor_address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vendor">
+          <Key>
+            <PropertyRef Name="vend_id" />
+          </Key>
+          <Property Name="vend_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK__batch__repo_id__37A5467C">
+          <End Role="repositories" Type="Self.repository" Multiplicity="1" />
+          <End Role="batch" Type="Self.batch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="repositories">
+              <PropertyRef Name="repo_id" />
+            </Principal>
+            <Dependent Role="batch">
+              <PropertyRef Name="repo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__batch__vend_id__38996AB5">
+          <End Role="vendors" Type="Self.vendor" Multiplicity="1" />
+          <End Role="batch" Type="Self.batch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendors">
+              <PropertyRef Name="vend_id" />
+            </Principal>
+            <Dependent Role="batch">
+              <PropertyRef Name="vend_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__batch_goo__batch__3C69FB99">
+          <End Role="batch" Type="Self.batch" Multiplicity="1" />
+          <End Role="batch_goods" Type="HomeworksDBModel.batch_good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="batch">
+              <PropertyRef Name="batch_id" />
+            </Principal>
+            <Dependent Role="batch_goods">
+              <PropertyRef Name="batch_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__batch_goo__good___3B75D760">
+          <End Role="goods" Type="Self.good" Multiplicity="1" />
+          <End Role="batch_goods" Type="HomeworksDBModel.batch_good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="goods">
+              <PropertyRef Name="good_id" />
+            </Principal>
+            <Dependent Role="batch_goods">
+              <PropertyRef Name="good_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ordergood__good___49C3F6B7">
+          <End Role="goods" Type="Self.good" Multiplicity="1" />
+          <End Role="ordergoods" Type="Self.ordergood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="goods">
+              <PropertyRef Name="good_id" />
+            </Principal>
+            <Dependent Role="ordergoods">
+              <PropertyRef Name="good_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__repo_good__good___34C8D9D1">
+          <End Role="goods" Type="Self.good" Multiplicity="1" />
+          <End Role="repo_goods" Type="HomeworksDBModel.repo_good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="goods">
+              <PropertyRef Name="good_id" />
+            </Principal>
+            <Dependent Role="repo_goods">
+              <PropertyRef Name="good_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__snapshots__good___2A4B4B5E">
+          <End Role="goods" Type="Self.good" Multiplicity="1" />
+          <End Role="snapshots" Type="Self.snapshot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="goods">
+              <PropertyRef Name="good_id" />
+            </Principal>
+            <Dependent Role="snapshots">
+              <PropertyRef Name="good_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__storegood__good___403A8C7D">
+          <End Role="goods" Type="Self.good" Multiplicity="1" />
+          <End Role="storegood" Type="Self.storegood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="goods">
+              <PropertyRef Name="good_id" />
+            </Principal>
+            <Dependent Role="storegood">
+              <PropertyRef Name="good_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ordergood__order__48CFD27E">
+          <End Role="orders" Type="Self.order" Multiplicity="1" />
+          <End Role="ordergoods" Type="Self.ordergood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="order_num" />
+            </Principal>
+            <Dependent Role="ordergoods">
+              <PropertyRef Name="order_num" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__stor_id__45F365D3">
+          <End Role="stores" Type="Self.store" Multiplicity="1" />
+          <End Role="orders" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stores">
+              <PropertyRef Name="stor_id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="stor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__repo_good__repo___33D4B598">
+          <End Role="repositories" Type="Self.repository" Multiplicity="1" />
+          <End Role="repo_goods" Type="HomeworksDBModel.repo_good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="repositories">
+              <PropertyRef Name="repo_id" />
+            </Principal>
+            <Dependent Role="repo_goods">
+              <PropertyRef Name="repo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__saleprice__store__4316F928">
+          <End Role="storegood" Type="Self.storegood" Multiplicity="1" />
+          <End Role="saleprices" Type="Self.saleprice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="storegood">
+              <PropertyRef Name="storegood_id" />
+            </Principal>
+            <Dependent Role="saleprices">
+              <PropertyRef Name="storegood_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__storegood__stor___3F466844">
+          <End Role="stores" Type="Self.store" Multiplicity="1" />
+          <End Role="storegood" Type="Self.storegood" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stores">
+              <PropertyRef Name="stor_id" />
+            </Principal>
+            <Dependent Role="storegood">
+              <PropertyRef Name="stor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ordergood_batch">
+          <End Role="batch" Type="Self.batch" Multiplicity="*" />
+          <End Role="ordergoods" Type="Self.ordergood" Multiplicity="*" />
+        </Association>
+        <Association Name="orderpaytype">
+          <End Role="orders" Type="Self.order" Multiplicity="*" />
+          <End Role="paytype" Type="Self.paytype" Multiplicity="*" />
+        </Association>
+        <Association Name="store_repositories">
+          <End Role="repositories" Type="Self.repository" Multiplicity="*" />
+          <End Role="stores" Type="Self.store" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="HomeworksDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="batches" EntityType="Self.batch" />
+          <EntitySet Name="batch_goods" EntityType="HomeworksDBModel.batch_good" />
+          <EntitySet Name="goods" EntityType="Self.good" />
+          <EntitySet Name="ordergoods" EntityType="Self.ordergood" />
+          <EntitySet Name="orders" EntityType="Self.order" />
+          <EntitySet Name="paytypes" EntityType="Self.paytype" />
+          <EntitySet Name="repo_goods" EntityType="HomeworksDBModel.repo_good" />
+          <EntitySet Name="repositories" EntityType="Self.repository" />
+          <EntitySet Name="saleprices" EntityType="Self.saleprice" />
+          <EntitySet Name="snapshots" EntityType="Self.snapshot" />
+          <EntitySet Name="storegoods" EntityType="Self.storegood" />
+          <EntitySet Name="stores" EntityType="Self.store" />
+          <EntitySet Name="vendors" EntityType="Self.vendor" />
+          <AssociationSet Name="FK__batch__repo_id__37A5467C" Association="Self.FK__batch__repo_id__37A5467C">
+            <End Role="repositories" EntitySet="repositories" />
+            <End Role="batch" EntitySet="batches" />
+          </AssociationSet>
+          <AssociationSet Name="FK__batch__vend_id__38996AB5" Association="Self.FK__batch__vend_id__38996AB5">
+            <End Role="vendors" EntitySet="vendors" />
+            <End Role="batch" EntitySet="batches" />
+          </AssociationSet>
+          <AssociationSet Name="FK__batch_goo__batch__3C69FB99" Association="Self.FK__batch_goo__batch__3C69FB99">
+            <End Role="batch" EntitySet="batches" />
+            <End Role="batch_goods" EntitySet="batch_goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__batch_goo__good___3B75D760" Association="Self.FK__batch_goo__good___3B75D760">
+            <End Role="goods" EntitySet="goods" />
+            <End Role="batch_goods" EntitySet="batch_goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ordergood__good___49C3F6B7" Association="Self.FK__ordergood__good___49C3F6B7">
+            <End Role="goods" EntitySet="goods" />
+            <End Role="ordergoods" EntitySet="ordergoods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__repo_good__good___34C8D9D1" Association="Self.FK__repo_good__good___34C8D9D1">
+            <End Role="goods" EntitySet="goods" />
+            <End Role="repo_goods" EntitySet="repo_goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__snapshots__good___2A4B4B5E" Association="Self.FK__snapshots__good___2A4B4B5E">
+            <End Role="goods" EntitySet="goods" />
+            <End Role="snapshots" EntitySet="snapshots" />
+          </AssociationSet>
+          <AssociationSet Name="FK__storegood__good___403A8C7D" Association="Self.FK__storegood__good___403A8C7D">
+            <End Role="goods" EntitySet="goods" />
+            <End Role="storegood" EntitySet="storegoods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ordergood__order__48CFD27E" Association="Self.FK__ordergood__order__48CFD27E">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="ordergoods" EntitySet="ordergoods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__stor_id__45F365D3" Association="Self.FK__orders__stor_id__45F365D3">
+            <End Role="stores" EntitySet="stores" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__repo_good__repo___33D4B598" Association="Self.FK__repo_good__repo___33D4B598">
+            <End Role="repositories" EntitySet="repositories" />
+            <End Role="repo_goods" EntitySet="repo_goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__saleprice__store__4316F928" Association="Self.FK__saleprice__store__4316F928">
+            <End Role="storegood" EntitySet="storegoods" />
+            <End Role="saleprices" EntitySet="saleprices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__storegood__stor___3F466844" Association="Self.FK__storegood__stor___3F466844">
+            <End Role="stores" EntitySet="stores" />
+            <End Role="storegood" EntitySet="storegoods" />
+          </AssociationSet>
+          <AssociationSet Name="ordergood_batch" Association="Self.ordergood_batch">
+            <End Role="batch" EntitySet="batches" />
+            <End Role="ordergoods" EntitySet="ordergoods" />
+          </AssociationSet>
+          <AssociationSet Name="orderpaytype" Association="Self.orderpaytype">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="paytype" EntitySet="paytypes" />
+          </AssociationSet>
+          <AssociationSet Name="store_repositories" Association="Self.store_repositories">
+            <End Role="repositories" EntitySet="repositories" />
+            <End Role="stores" EntitySet="stores" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HomeworksDBModelStoreContainer" CdmEntityContainer="HomeworksDBEntities">
+          <EntitySetMapping Name="batches">
+            <EntityTypeMapping TypeName="HomeworksDBModel.batch">
+              <MappingFragment StoreEntitySet="batch">
+                <ScalarProperty Name="batch_id" ColumnName="batch_id" />
+                <ScalarProperty Name="repo_id" ColumnName="repo_id" />
+                <ScalarProperty Name="batch_date" ColumnName="batch_date" />
+                <ScalarProperty Name="vend_id" ColumnName="vend_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="batch_goods">
+            <EntityTypeMapping TypeName="HomeworksDBModel.batch_good">
+              <MappingFragment StoreEntitySet="batch_goods">
+                <ScalarProperty Name="batch_id" ColumnName="batch_id" />
+                <ScalarProperty Name="good_id" ColumnName="good_id" />
+                <ScalarProperty Name="purchase_price" ColumnName="purchase_price" />
+                <ScalarProperty Name="purchase_quantity" ColumnName="purchase_quantity" />
+                <ScalarProperty Name="surplus" ColumnName="surplus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="goods">
+            <EntityTypeMapping TypeName="HomeworksDBModel.good">
+              <MappingFragment StoreEntitySet="goods">
+                <ScalarProperty Name="good_id" ColumnName="good_id" />
+                <ScalarProperty Name="good_name" ColumnName="good_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ordergoods">
+            <EntityTypeMapping TypeName="HomeworksDBModel.ordergood">
+              <MappingFragment StoreEntitySet="ordergoods">
+                <ScalarProperty Name="ordergood_id" ColumnName="ordergood_id" />
+                <ScalarProperty Name="order_num" ColumnName="order_num" />
+                <ScalarProperty Name="good_id" ColumnName="good_id" />
+                <ScalarProperty Name="ordergood_quantity" ColumnName="ordergood_quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="HomeworksDBModel.order">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="order_num" ColumnName="order_num" />
+                <ScalarProperty Name="stor_id" ColumnName="stor_id" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paytypes">
+            <EntityTypeMapping TypeName="HomeworksDBModel.paytype">
+              <MappingFragment StoreEntitySet="paytype">
+                <ScalarProperty Name="paytype_id" ColumnName="paytype_id" />
+                <ScalarProperty Name="paytype_name" ColumnName="paytype_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="repo_goods">
+            <EntityTypeMapping TypeName="HomeworksDBModel.repo_good">
+              <MappingFragment StoreEntitySet="repo_goods">
+                <ScalarProperty Name="repo_id" ColumnName="repo_id" />
+                <ScalarProperty Name="good_id" ColumnName="good_id" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="repositories">
+            <EntityTypeMapping TypeName="HomeworksDBModel.repository">
+              <MappingFragment StoreEntitySet="repositories">
+                <ScalarProperty Name="repo_id" ColumnName="repo_id" />
+                <ScalarProperty Name="repo_address" ColumnName="repo_address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="saleprices">
+            <EntityTypeMapping TypeName="HomeworksDBModel.saleprice">
+              <MappingFragment StoreEntitySet="saleprices">
+                <ScalarProperty Name="storegood_id" ColumnName="storegood_id" />
+                <ScalarProperty Name="sale_date" ColumnName="sale_date" />
+                <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="snapshots">
+            <EntityTypeMapping TypeName="HomeworksDBModel.snapshot">
+              <MappingFragment StoreEntitySet="snapshots">
+                <ScalarProperty Name="snapshot_id" ColumnName="snapshot_id" />
+                <ScalarProperty Name="snapshot_time" ColumnName="snapshot_time" />
+                <ScalarProperty Name="good_id" ColumnName="good_id" />
+                <ScalarProperty Name="good_name" ColumnName="good_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="storegoods">
+            <EntityTypeMapping TypeName="HomeworksDBModel.storegood">
+              <MappingFragment StoreEntitySet="storegood">
+                <ScalarProperty Name="storegood_id" ColumnName="storegood_id" />
+                <ScalarProperty Name="stor_id" ColumnName="stor_id" />
+                <ScalarProperty Name="good_id" ColumnName="good_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stores">
+            <EntityTypeMapping TypeName="HomeworksDBModel.store">
+              <MappingFragment StoreEntitySet="stores">
+                <ScalarProperty Name="stor_id" ColumnName="stor_id" />
+                <ScalarProperty Name="stor_address" ColumnName="stor_address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vendors">
+            <EntityTypeMapping TypeName="HomeworksDBModel.vendor">
+              <MappingFragment StoreEntitySet="vendors">
+                <ScalarProperty Name="vend_id" ColumnName="vend_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ordergood_batch" TypeName="HomeworksDBModel.ordergood_batch" StoreEntitySet="ordergood_batch">
+            <EndProperty Name="batch">
+              <ScalarProperty Name="batch_id" ColumnName="batch_id" />
+            </EndProperty>
+            <EndProperty Name="ordergoods">
+              <ScalarProperty Name="ordergood_id" ColumnName="ordergood_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="orderpaytype" TypeName="HomeworksDBModel.orderpaytype" StoreEntitySet="orderpaytype">
+            <EndProperty Name="orders">
+              <ScalarProperty Name="order_num" ColumnName="order_num" />
+            </EndProperty>
+            <EndProperty Name="paytype">
+              <ScalarProperty Name="paytype_id" ColumnName="paytype_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="store_repositories" TypeName="HomeworksDBModel.store_repositories" StoreEntitySet="store_repositories">
+            <EndProperty Name="repositories">
+              <ScalarProperty Name="repo_id" ColumnName="repo_id" />
+            </EndProperty>
+            <EndProperty Name="stores">
+              <ScalarProperty Name="stor_id" ColumnName="stor_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
