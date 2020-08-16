@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SaleAppMVC.Models.snapshot>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>商品快照</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.snapshot_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.snapshot_time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.good_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.good_name)
+        </th>
+        <th>操作</th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.snapshot_id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.snapshot_time)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.good_id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.good_name)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.snapshot_id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.snapshot_id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.snapshot_id })
+    </td>
+</tr>
+}
+
+</table>

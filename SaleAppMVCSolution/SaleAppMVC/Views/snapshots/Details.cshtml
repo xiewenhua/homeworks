@@ -1,0 +1,42 @@
+﻿@model SaleAppMVC.Models.snapshot
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>snapshot</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.snapshot_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.snapshot_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.good_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.good_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.good_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.good_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.snapshot_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
