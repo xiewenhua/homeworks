@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SaleAppMVC.Models.ordergood>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>订单详情</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model=>model.ordergood_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order_num)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.good_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ordergood_quantity)
+        </th>
+        <th>操作</th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ordergood_id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.order_num)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.good_id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ordergood_quantity)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ordergood_id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ordergood_id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ordergood_id })
+    </td>
+</tr>
+}
+
+</table>

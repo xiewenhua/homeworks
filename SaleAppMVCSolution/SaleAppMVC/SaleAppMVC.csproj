@@ -145,6 +145,7 @@
     <Compile Include="Controllers\batch_goodController.cs" />
     <Compile Include="Controllers\goodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ordergoodsController.cs" />
     <Compile Include="Controllers\ordersController.cs" />
     <Compile Include="Controllers\paytypesController.cs" />
     <Compile Include="Controllers\repositoriesController.cs" />
@@ -308,6 +309,11 @@
     <Content Include="Views\orders\Details.cshtml" />
     <Content Include="Views\orders\Edit.cshtml" />
     <Content Include="Views\orders\Index.cshtml" />
+    <Content Include="Views\ordergoods\Create.cshtml" />
+    <Content Include="Views\ordergoods\Delete.cshtml" />
+    <Content Include="Views\ordergoods\Details.cshtml" />
+    <Content Include="Views\ordergoods\Edit.cshtml" />
+    <Content Include="Views\ordergoods\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
