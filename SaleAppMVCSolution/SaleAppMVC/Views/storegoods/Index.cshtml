@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SaleAppMVC.Models.storegood>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>门店销售商品清单</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.storegood_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stor_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.good_id)
+        </th>
+        <th>操作</th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.storegood_id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.stor_id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.good_id)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.storegood_id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.storegood_id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.storegood_id })
+    </td>
+</tr>
+}
+
+</table>
