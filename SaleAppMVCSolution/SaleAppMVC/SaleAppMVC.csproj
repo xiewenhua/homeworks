@@ -143,6 +143,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\goodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\paytypesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -260,6 +261,11 @@
     <Content Include="Views\goods\Details.cshtml" />
     <Content Include="Views\goods\Edit.cshtml" />
     <Content Include="Views\goods\Index.cshtml" />
+    <Content Include="Views\paytypes\Create.cshtml" />
+    <Content Include="Views\paytypes\Delete.cshtml" />
+    <Content Include="Views\paytypes\Details.cshtml" />
+    <Content Include="Views\paytypes\Edit.cshtml" />
+    <Content Include="Views\paytypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
