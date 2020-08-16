@@ -141,19 +141,64 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\goodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\batch.cs">
+      <DependentUpon>MyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\batch_good.cs">
+      <DependentUpon>MyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\good.cs">
+      <DependentUpon>MyDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MyDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MyDBModel.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MyDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MyDBModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MyDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\order.cs">
+      <DependentUpon>MyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ordergood.cs">
+      <DependentUpon>MyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\paytype.cs">
+      <DependentUpon>MyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\repository.cs">
+      <DependentUpon>MyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\repo_good.cs">
+      <DependentUpon>MyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\saleprice.cs">
+      <DependentUpon>MyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\snapshot.cs">
+      <DependentUpon>MyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\store.cs">
+      <DependentUpon>MyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\storegood.cs">
+      <DependentUpon>MyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vendor.cs">
+      <DependentUpon>MyDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -169,6 +214,12 @@
     <Content Include="Models\MyDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MyDBModel.Context.cs</LastGenOutput>
+      <DependentUpon>MyDBModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\MyDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyDBModel.edmx</DependentUpon>
+      <LastGenOutput>MyDBModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -176,9 +227,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MyDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\MyDBModel.edmx.diagram">
+    <Content Include="Models\MyDBModel.edmx.diagram">
       <DependentUpon>MyDBModel.edmx</DependentUpon>
-    </None>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -204,6 +255,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\goods\Create.cshtml" />
+    <Content Include="Views\goods\Delete.cshtml" />
+    <Content Include="Views\goods\Details.cshtml" />
+    <Content Include="Views\goods\Edit.cshtml" />
+    <Content Include="Views\goods\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
