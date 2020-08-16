@@ -42,7 +42,7 @@ GO
 -- 编写触发器，当添加新商品或者更新已有商品属性时，生成商品快照
 CREATE TRIGGER Generated_Snapshot
 ON goods
-FOR UPDATE AS
+FOR UPDATE,INSERT AS
 INSERT INTO snapshots(snapshot_time,good_id,good_name)
 SELECT GETDATE(),good_id,good_name
 FROM inserted
