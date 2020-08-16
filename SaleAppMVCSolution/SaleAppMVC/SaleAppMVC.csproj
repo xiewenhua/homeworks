@@ -145,6 +145,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\paytypesController.cs" />
     <Compile Include="Controllers\repositoriesController.cs" />
+    <Compile Include="Controllers\repo_goodController.cs" />
     <Compile Include="Controllers\storesController.cs" />
     <Compile Include="Controllers\vendorsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -284,6 +285,11 @@
     <Content Include="Views\vendors\Details.cshtml" />
     <Content Include="Views\vendors\Edit.cshtml" />
     <Content Include="Views\vendors\Index.cshtml" />
+    <Content Include="Views\repo_good\Create.cshtml" />
+    <Content Include="Views\repo_good\Delete.cshtml" />
+    <Content Include="Views\repo_good\Details.cshtml" />
+    <Content Include="Views\repo_good\Edit.cshtml" />
+    <Content Include="Views\repo_good\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
