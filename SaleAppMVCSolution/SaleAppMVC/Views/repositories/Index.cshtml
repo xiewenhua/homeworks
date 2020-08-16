@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SaleAppMVC.Models.repository>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>仓库</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.repo_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.repo_address)
+        </th>
+        <th>操作</th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.repo_id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.repo_address)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.repo_id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.repo_id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.repo_id })
+    </td>
+</tr>
+}
+
+</table>

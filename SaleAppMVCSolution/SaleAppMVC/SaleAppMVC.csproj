@@ -144,6 +144,7 @@
     <Compile Include="Controllers\goodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\paytypesController.cs" />
+    <Compile Include="Controllers\repositoriesController.cs" />
     <Compile Include="Controllers\storesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -272,6 +273,11 @@
     <Content Include="Views\stores\Details.cshtml" />
     <Content Include="Views\stores\Edit.cshtml" />
     <Content Include="Views\stores\Index.cshtml" />
+    <Content Include="Views\repositories\Create.cshtml" />
+    <Content Include="Views\repositories\Delete.cshtml" />
+    <Content Include="Views\repositories\Details.cshtml" />
+    <Content Include="Views\repositories\Edit.cshtml" />
+    <Content Include="Views\repositories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

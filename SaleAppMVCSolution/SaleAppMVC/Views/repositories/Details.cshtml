@@ -1,0 +1,26 @@
+﻿@model SaleAppMVC.Models.repository
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>repository</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.repo_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.repo_address)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.repo_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
