@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SaleAppMVC.Models.batch>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>进货批次</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.batch_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.repo_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vend_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.batch_date)
+        </th>
+        <th>操作</th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.batch_id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.repo_id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.vend_id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.batch_date)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.batch_id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.batch_id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.batch_id })
+    </td>
+</tr>
+}
+
+</table>

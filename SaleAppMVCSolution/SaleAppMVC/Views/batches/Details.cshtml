@@ -1,0 +1,42 @@
+﻿@model SaleAppMVC.Models.batch
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>batch</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.repo_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.repo_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.batch_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.batch_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vend_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vend_id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.batch_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
