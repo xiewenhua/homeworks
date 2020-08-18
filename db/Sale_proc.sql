@@ -41,6 +41,9 @@ BEGIN
     AND store_repositories.stor_id=@stor_id
     AND good_id=@good_id;
 
+    --调试
+    PRINT '商品编号:'+CAST(@good_id AS varchar)+'    总库存：'+CAST(@kucun AS varchar)
+
     --库存不充足，创建订单失败
     IF @kucun<@quantity
     BEGIN
@@ -60,7 +63,7 @@ BEGIN
         SET @ordergood_id = SCOPE_IDENTITY()    -- 自增生成的订单商品号
 
     -- 消耗库存
-        DECLARE batchgood_cur CURSOR   --该仓库里没卖完的所有批次的指定商品集合游标
+        DECLARE batchgood_cur CURSOR   --该仓库里所有批次的指定商品集合游标
         FOR
         SELECT batch_goods.batch_id,surplus FROM batch_goods,batch,store_repositories
         WHERE batch_goods.batch_id=batch.batch_id
@@ -110,7 +113,7 @@ PRINT '订单创建成功'
 
 
 
-
+-- 使用示例
 
 DECLARE @@shopcart AS shop_cart_type    --定义购物车表类型变量
 
